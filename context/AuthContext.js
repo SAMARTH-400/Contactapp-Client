@@ -17,7 +17,7 @@ export const AuthContextProvider = ({ children }) => {
     // Check if user is logged in
     const checkUserLoggedIn = async () => {
         try{
-            const res = await fetch(`http://localhost:8000/api/me`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/me`, {
                 method: "GET",
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
@@ -36,7 +36,7 @@ export const AuthContextProvider = ({ children }) => {
     // login request.
     const loginUser = async (userData) => {
         try {
-        const res = await fetch(`http://localhost:8000/api/login`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ ...userData }),
@@ -54,7 +54,7 @@ export const AuthContextProvider = ({ children }) => {
     // register request.
     const registerUser = async (userData) => {
         try {
-            const res = await fetch(`http://localhost:8000/api/register`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ...userData }),

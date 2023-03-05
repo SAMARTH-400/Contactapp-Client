@@ -9,7 +9,6 @@ export default function Contacts(){
     const [loading, setLoading] = useState(false);
     const [contacts, setContacts] = useState([]);
     const [modalOpened, setModalOpened] = useState(false);
-    
     useEffect(() => {
         getContacts();
     },[modalOpened]);
@@ -17,7 +16,7 @@ export default function Contacts(){
     const getContacts = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`http://localhost:8000/api/mycontacts`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/mycontacts`, {
                 method: "GET",
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
             });

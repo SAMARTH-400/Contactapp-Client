@@ -17,7 +17,7 @@ export default function EditModal({ modalOpened, setModalOpened, name, phone, id
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const res = await fetch(`http://localhost:8000/api/contact`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/contact`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("token")}` }, body: JSON.stringify({ id, ...userDetails }),
         });

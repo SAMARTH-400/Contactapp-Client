@@ -10,7 +10,7 @@ export default function Contact({key, name, phone, id, handleDelete}) {
     const deleteContact = async() => {
         if (window.confirm("are you sure you want to delete this contact ?")) {
             try {
-                const res = await fetch(`http://localhost:8000/api/delete/${id}`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/delete/${id}`, {
                     method: "DELETE",
                     headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,

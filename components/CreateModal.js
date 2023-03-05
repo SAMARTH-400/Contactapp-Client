@@ -16,7 +16,7 @@ export default function CreateModal({ modalOpened, setModalOpened }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const res = await fetch(`http://localhost:8000/api/contact`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/contact`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
