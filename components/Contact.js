@@ -2,8 +2,9 @@ import { useContext , useState} from "react";
 import EditModal from "../components/EditModal";
 import ToastContext from "../context/ToastContext";
 
-export default function Contact({key, name, phone, id, handleDelete}) {
+export default function Contact({key, name, phone, id, handleDelete, handleSelect}) {
     const { toast } = useContext(ToastContext);
+    const [checked, setChecked] = useState(false);
     const [modalOpened, setModalOpened] = useState(false); 
     const [userDetails, setUserDetails] = useState({ Username: name, Userphone: phone});
 
@@ -28,9 +29,16 @@ export default function Contact({key, name, phone, id, handleDelete}) {
     const handleEdit = (un , up) => {
         setUserDetails({Username: un, Userphone: up});
     }
+    const handleChange = () => {
+        handleSelect(id, !checked);
+        setChecked(!checked);
+    }
     return (
         <div className="grid grid-cols-10 bg-slate-600">
-            <div className="text-center  px-1 py-2 text-blue-100 col-span-3"> {userDetails.Username} </div>
+            <div className="text-center  px-1 py-2 text-blue-100 col-span-3 flex space-x-3"> 
+                <input type="checkBox" checked={checked} onChange={handleChange}></input>
+                <p>{userDetails.Username} </p>
+            </div>
             <div className=" px-1 py-2 text-gray-400 font-medium col-span-4 text-center"> {userDetails.Userphone} </div>
             <div className="text-center  px-1 py-2 text-orange-800 flex gap-5 justify-center  col-span-3 ">
                 <button onClick={deleteContact} className="text-rose-500 ">
